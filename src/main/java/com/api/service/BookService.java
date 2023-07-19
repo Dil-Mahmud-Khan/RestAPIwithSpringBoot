@@ -1,7 +1,9 @@
 package com.api.service;
 
+import java.lang.invoke.CallSite;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.springframework.stereotype.Component;
 
@@ -32,6 +34,24 @@ public class BookService {
 	public Book addBook(Book b) {
 		list.add(b);
 		return b;
+	}
+	
+	//delete book
+	
+	public void deleteBook(int bid) {
+		list=list.stream().filter(book->book.getId()!=bid).collect(Collectors.toList());
+	}
+	
+	
+	//update book
+	public void updateBook(Book book, int bookId) {
+		list=list.stream().map(b->{
+			if(b.getId()==bookId) {
+				b.setAuthor("Salman Khan");
+				b.setTitle("Unmarried");
+			}
+			return b;
+		}).collect(Collectors.toList());
 	}
 	
 }
