@@ -36,7 +36,7 @@ public class BookController {
 		if(list.size()<=0) {
 			return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
 		}
-		return ResponseEntity.of(Optional.of(list));
+		return ResponseEntity.status(HttpStatus.CREATED).body(list);
 		
 	}
 	
@@ -83,7 +83,7 @@ public class BookController {
 	}
 	
 	
-//	//update controlller
+//	//update Controller
 	
 	@PutMapping("/books/{bookId}")
 	public ResponseEntity<Book> updateBook(@RequestBody Book book, @PathVariable("bookId")int bookId) {
